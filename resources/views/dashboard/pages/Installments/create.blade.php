@@ -68,7 +68,7 @@
                                 <div class="form-group col-md-4">
                                     <label>No of Month</label>
                                     <input type="number" class="form-control" name="month_no" id="month_no"
-                                           value="{{old('month_no')}}" onkeyup="month_numbers()" required>
+                                           value="14" onkeyup="month_numbers()" required>
                                 </div>
 
                                 <div class="form-group col-md-4">
@@ -127,7 +127,7 @@
 
 
         function month_numbers() {
-            document.getElementById("month_no").value = 14;
+            //document.getElementById("month_no").value = 14;
             var price_after_interest = document.getElementById("price_after_interest").value;
             var price_per_month = document.getElementById("price_per_month").value;
             var month_no = document.getElementById("month_no").value;

@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Installments extends Model
 {
+    use SoftDeletes;
     protected $table='installments';
     protected $fillable=[
         'user_id',
@@ -21,6 +24,7 @@ class Installments extends Model
                 'client_mobile',
       
     ];
+    protected $date = ['deleted_at'];
 
 
      public function User()

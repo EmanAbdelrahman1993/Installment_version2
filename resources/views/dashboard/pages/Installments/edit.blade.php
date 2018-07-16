@@ -66,15 +66,16 @@
                                 </div>
 
 
-                                <div class="form-group col-md-4">
-                                    <label>Price Per Month</label>
-                                    <input type="number" class="form-control" name="price_per_month" id="price_per_month"
-                                           value="{{$one_installment->price_per_month}}" onkeyup="month_numbers()" required>
-                                </div>
+
                                 <div class="form-group col-md-4">
                                     <label>No of Month</label>
                                     <input type="number" class="form-control" name="month_no" id="month_no"
                                            value="{{$one_installment->month_no}}" onkeyup="month_numbers()" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Price Per Month</label>
+                                    <input type="number" class="form-control" name="price_per_month" id="price_per_month"
+                                           value="{{$one_installment->price_per_month}}" onkeyup="month_numbers()" required>
                                 </div>
 
                                 <div class="form-group col-md-4">

@@ -27,5 +27,8 @@ Route::get('reports','InstallmentsController@reports');
 
 Route::get('archive','InstallmentsController@archive');
 
+Route::get('analysis','InstallmentsController@analysis');
+
+
 
 });

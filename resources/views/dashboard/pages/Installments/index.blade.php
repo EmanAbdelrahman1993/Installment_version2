@@ -28,8 +28,8 @@
                         <tbody>
                         @if($all_installments)
                         @foreach($all_installments as $installemnt)
-                            @if($danger == 1)
-                            <tr class="table-danger">
+                            {{--@if($danger == 1)--}}
+                            <tr>
 
                                 <td>{{$installemnt->product_name}}</td>
                                 <td> {{ str_limit($installemnt->description, $limit = 25, $end = '...') }}</td>
@@ -50,29 +50,29 @@
 
                                 </td>
                             </tr>
-                            @else
-                                <tr>
+                            {{--@else--}}
+                                {{--<tr>--}}
 
-                                    <td>{{$installemnt->product_name}}</td>
-                                    <td> {{ str_limit($installemnt->description, $limit = 25, $end = '...') }}</td>
-                                    <td> {{$installemnt->price_after_interest}}</td>
-                                    <td>{{$installemnt->start_month}}</td>
+                                    {{--<td>{{$installemnt->product_name}}</td>--}}
+                                    {{--<td> {{ str_limit($installemnt->description, $limit = 25, $end = '...') }}</td>--}}
+                                    {{--<td> {{$installemnt->price_after_interest}}</td>--}}
+                                    {{--<td>{{$installemnt->start_month}}</td>--}}
 
 
 
-                                    <td>
-                                        <a href="{{url('Installments/'.$installemnt->id)}}" class="btn btn-success">Show</a>
-                                        <a href="{{url('Installments/'.$installemnt->id.'/edit')}}" class="btn btn-primary">Edit</a>
-                                        <form method="post" action="{{url('Installments/'.$installemnt->id)}}"
-                                              style="display: inline;">
-                                            @csrf
-                                            <input type="hidden" name="_method" value="DELETE"/>
-                                            <input type="submit" value="delete" class="btn btn-danger"/>
-                                        </form>
+                                    {{--<td>--}}
+                                        {{--<a href="{{url('Installments/'.$installemnt->id)}}" class="btn btn-success">Show</a>--}}
+                                        {{--<a href="{{url('Installments/'.$installemnt->id.'/edit')}}" class="btn btn-primary">Edit</a>--}}
+                                        {{--<form method="post" action="{{url('Installments/'.$installemnt->id)}}"--}}
+                                              {{--style="display: inline;">--}}
+                                            {{--@csrf--}}
+                                            {{--<input type="hidden" name="_method" value="DELETE"/>--}}
+                                            {{--<input type="submit" value="delete" class="btn btn-danger"/>--}}
+                                        {{--</form>--}}
 
-                                    </td>
-                                </tr>
-                                @endif
+                                    {{--</td>--}}
+                                {{--</tr>--}}
+                                {{--@endif--}}
                         @endforeach
                             @else
                             <div class="alert alert-dismissible alert-primary">

@@ -17,7 +17,7 @@
                     <table class="table table-bordered table-responsive-sm table-hover">
 
                         <tbody>
-                        @if($total_sales || $real_payments || $profits || $collected_amount_each_month)
+                        @if($total_sales || $real_payments || $profits || $collected_amount_this_month)
                             <tr>
                                 <td><h4>Total Sales</h4></td>
                                 <td><h4>{{$total_sales}}</h4></td>

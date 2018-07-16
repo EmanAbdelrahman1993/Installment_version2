@@ -17,19 +17,19 @@ class InstallmentsController extends Controller
     {
          $user_id = auth()->user()->id;
          $all_installments = Installments::where('user_id',$user_id)->paginate(5);
-         foreach($all_installments as $one_installment) {
-             $current_date = date("m");
-             $last_month = date('m', strtotime($one_installment->last_month));
-             if ($last_month == $current_date) {
-                 $danger = 1;
-             }
-             else {
-                 $danger = 0;
-             }
-         }
+//         foreach($all_installments as $one_installment) {
+//             $current_date = date("m");
+//             $last_month = date('m', strtotime($one_installment->last_month));
+//             if ($last_month == $current_date) {
+//                 $danger = 1;
+//             }
+//             else {
+//                 $danger = 0;
+//             }
+//         }
         //dd($danger);
 
-         return view('dashboard.pages.Installments.index')->with(array('all_installments'=>$all_installments,'danger'=>$danger));
+         return view('dashboard.pages.Installments.index')->with(array('all_installments'=>$all_installments));
     }
 
     /**
@@ -216,28 +216,15 @@ class InstallmentsController extends Controller
     public function archive()
     {
         $user_id = auth()->user()->id;
-        $all_installments = Installments::where('user_id',$user_id)->get();
-
-        $current_date = date("m");
-       // dd($current_date);
-
-        foreach($all_installments as $one_installment)
-        {
-            $last_month = date('m' ,strtotime($one_installment->last_month));
-            //dd($last_month);
-
-
-
-            ///Problem Substract 1 month of month :(
-            if($last_month = $current_date - 1)
-            {
-                $installemnts_archived[]= $one_installment;
-            }
-
-           // dd($installemnts_archived);
-
-        }
+        $installemnts_archived =Installments::onlyTrashed('id', 'asc')->paginate(5);
         return view('dashboard.pages.Installments.archive')->with('installemnts_archived',$installemnts_archived);
+    }
+
+    public function analysis()
+    {
+        $user_id = auth()->user()->id;
+        $all_installments = Installments::where('user_id',$user_id)->paginate(5);
+        return view('dashboard.pages.Installments.analysis');
     }
 
 

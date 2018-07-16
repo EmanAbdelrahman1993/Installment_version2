@@ -30,6 +30,7 @@ class CreateInstallmentsTable extends Migration
             $table->string('client_name');
             $table->integer('client_mobile');
             $table->longText('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
