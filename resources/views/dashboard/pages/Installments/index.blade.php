@@ -2,17 +2,25 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-      
+        <section class="content-header">
+            <h1>
+                Installments Index
+                <a href="{{url('Installments/create')}}" class="btn btn-primary for pull-right">Add New Installment</a>
+
+
+            </h1>
+
+
+        </section>
+
 
         <!-- Main content -->
         <section class="content">
             <div class="row">
                 <!-- left column -->
                  <div class="col-md-12">
-                <div class="card">
-                    <div class=" card-header">Installments Index
-                        <center> <a href="{{url('Installments/create')}}" class="btn btn-primary">Add Installment</a></center>
-                    </div>
+                     <div class="box box-primary">
+
                     <table class="table table-bordered table-responsive-sm table-hover">
 
                         <thead>

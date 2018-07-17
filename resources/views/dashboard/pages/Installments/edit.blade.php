@@ -4,7 +4,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Installments Create
+                Installments Update
                 <a href="{{url('Installments')}}" class="btn btn-primary for pull-right">Back</a>
 
 
@@ -91,6 +91,13 @@
                                     <input type="date" class="form-control" name="start_month"
                                            value="{{$one_installment->start_month}}" required>
                                 </div>
+
+                                <div class="form-group col-md-4">
+                                    <label>End Month</label>
+                                    <input type="date" class="form-control" name="last_month"
+                                           value="{{$one_installment->last_month}}" readonly>
+                                </div>
+
                                 <div class="form-group col-md-6">
                                     <label>Description</label>
                                     <textarea class="form-control" name="description" required>

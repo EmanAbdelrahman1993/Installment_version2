@@ -42,12 +42,7 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{{url('analysis')}}">
-                    <i class="fa fa-newspaper-o"></i> <span>Analysis</span>
 
-                </a>
-            </li>
             <li>
                 <a href="{{url('archive')}}">
                     <i class="fa fa-trash"></i> <span>Archive</span>

@@ -2,6 +2,16 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Reoport for you
+                <a href="{{url('Installments')}}" class="btn btn-primary for pull-right">Back</a>
+
+
+            </h1>
+
+
+        </section>
 
 
         <!-- Main content -->
@@ -9,9 +19,8 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="card">
-                        <h3 class=" card-header">Report of You</h3>
-                    </div>
+                    <div class="box box-primary">
+
 
 
                     <table class="table table-bordered table-responsive-sm table-hover">
@@ -51,7 +60,7 @@
 
 
                 </div>
-
+                </div>
             </div>
 
             <!-- /.row -->

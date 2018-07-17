@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Installments;
 use Illuminate\Http\Request;
 use Validator;
+use DateTime;
 
 class InstallmentsController extends Controller
 {
@@ -15,8 +16,8 @@ class InstallmentsController extends Controller
      */
     public function index()
     {
-         $user_id = auth()->user()->id;
-         $all_installments = Installments::where('user_id',$user_id)->paginate(5);
+        $user_id = auth()->user()->id;
+        $all_installments = Installments::where('user_id', $user_id)->paginate(5);
 //         foreach($all_installments as $one_installment) {
 //             $current_date = date("m");
 //             $last_month = date('m', strtotime($one_installment->last_month));
@@ -29,7 +30,7 @@ class InstallmentsController extends Controller
 //         }
         //dd($danger);
 
-         return view('dashboard.pages.Installments.index')->with(array('all_installments'=>$all_installments));
+        return view('dashboard.pages.Installments.index')->with(array('all_installments' => $all_installments));
     }
 
     /**
@@ -45,21 +46,21 @@ class InstallmentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-          $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'product_name' => 'required|string',
             'price_before_interest' => 'required',
             'interest' => 'required',
             'price_per_month' => 'required',
             'start_month' => 'required',
-            'last_month_money' =>'',
-            'client_name' =>  'required|string',
-            'client_mobile' =>  'required',
-            'description' =>  'required|string',
+            'last_month_money' => '',
+            'client_name' => 'required|string',
+            'client_mobile' => 'required',
+            'description' => 'required|string',
         ]);
 
 
@@ -75,12 +76,12 @@ class InstallmentsController extends Controller
         $inst->price_per_month = $request->price_per_month;
         $inst->start_month = $request->start_month;
         $inst->price_last_month = $request->last_month_money;
-        if($request->last_month_money == "0")
-            $inst->month_no = $request->month_no ;
+        if ($request->last_month_money == "0")
+            $inst->month_no = $request->month_no;
         else
             $inst->month_no = $request->month_no + 1;
 
-        $inst->last_month = date('Y-m-d',  strtotime( "$request->start_month +  $inst->month_no month" ) );
+        $inst->last_month = date('Y-m-d', strtotime("$request->start_month +  $inst->month_no month"));
         $inst->save();
         session()->flash('success', 'Installment Added Successfully');
         return redirect('Installments');
@@ -89,32 +90,32 @@ class InstallmentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Installments  $installments
+     * @param  \App\Installments $installments
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $one_installment = Installments::find($id);
-        return view('dashboard.pages.Installments.show')->with('one_installment',$one_installment);
+        return view('dashboard.pages.Installments.show')->with('one_installment', $one_installment);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Installments  $installments
+     * @param  \App\Installments $installments
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $one_installment = Installments::find($id);
-        return view('dashboard.pages.Installments.edit')->with('one_installment',$one_installment);
+        return view('dashboard.pages.Installments.edit')->with('one_installment', $one_installment);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Installments  $installments
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Installments $installments
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -126,10 +127,10 @@ class InstallmentsController extends Controller
             'interest' => 'required',
             'price_per_month' => 'required',
             'start_month' => 'required',
-            'last_month_money' =>'',
-            'client_name' =>  'required|string',
-            'client_mobile' =>  'required',
-            'description' =>  'required|string',
+            'last_month_money' => '',
+            'client_name' => 'required|string',
+            'client_mobile' => 'required',
+            'description' => 'required|string',
         ]);
 
 
@@ -145,11 +146,11 @@ class InstallmentsController extends Controller
         $inst->price_per_month = $request->price_per_month;
         $inst->start_month = $request->start_month;
         $inst->price_last_month = $request->last_month_money;
-        if($request->last_month_money == "0")
-            $inst->month_no = $request->month_no ;
+        if ($request->last_month_money == "0")
+            $inst->month_no = $request->month_no;
         else
             $inst->month_no = $request->month_no + 1;
-        $inst->last_month = date('Y-m-d',  strtotime( "$request->start_month +  $inst->month_no month" ) );
+        $inst->last_month = date('Y-m-d', strtotime("$request->start_month +  $inst->month_no month"));
 
         $inst->save();
         session()->flash('success', 'Installment Updated Successfully');
@@ -159,7 +160,7 @@ class InstallmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Installments  $installments
+     * @param  \App\Installments $installments
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -172,22 +173,19 @@ class InstallmentsController extends Controller
     public function reports()
     {
         $user_id = auth()->user()->id;
-        $all_installments = Installments::where('user_id',$user_id)->paginate(5);
-        $total_sales =0;
-        foreach($all_installments as $one_installment)
-        {
+        $all_installments = Installments::where('user_id', $user_id)->paginate(5);
+        $total_sales = 0;
+        foreach ($all_installments as $one_installment) {
             $total_sales = $total_sales + $one_installment->price_after_interest;
         }
 
-        $real_payments= 0;
-        foreach($all_installments as $one_installment)
-        {
+        $real_payments = 0;
+        foreach ($all_installments as $one_installment) {
             $real_payments = $real_payments + $one_installment->price_before_interest;
         }
 
         $profits = 0;
-        foreach($all_installments as $one_installment)
-        {
+        foreach ($all_installments as $one_installment) {
             $profits = $profits + ($one_installment->price_after_interest - $one_installment->price_before_interest);
         }
 
@@ -195,36 +193,27 @@ class InstallmentsController extends Controller
         $current_date = date("m");
 
 
+        foreach ($all_installments as $one_installment) {
 
-        foreach($all_installments as $one_installment)
-        {
-
-            $last_month = date('m' ,strtotime($one_installment->last_month));
-           //dd($last_month);
-            if($last_month == $current_date )
+            $last_month = date('m', strtotime($one_installment->last_month));
+            //dd($last_month);
+            if ($last_month == $current_date)
                 $collected_amount_this_month = $collected_amount_this_month + $one_installment->price_last_month;
 
             else
-                    $collected_amount_this_month = $collected_amount_this_month + $one_installment->price_per_month;
+                $collected_amount_this_month = $collected_amount_this_month + $one_installment->price_per_month;
 
         }
 
 
-        return view('dashboard.pages.Installments.reports')->with(array('total_sales'=>$total_sales,'real_payments'=>$real_payments,'profits'=>$profits,'collected_amount_this_month'=>$collected_amount_this_month));
+        return view('dashboard.pages.Installments.reports')->with(array('total_sales' => $total_sales, 'real_payments' => $real_payments, 'profits' => $profits, 'collected_amount_this_month' => $collected_amount_this_month));
     }
 
     public function archive()
     {
         $user_id = auth()->user()->id;
-        $installemnts_archived =Installments::onlyTrashed('id', 'asc')->paginate(5);
-        return view('dashboard.pages.Installments.archive')->with('installemnts_archived',$installemnts_archived);
-    }
-
-    public function analysis()
-    {
-        $user_id = auth()->user()->id;
-        $all_installments = Installments::where('user_id',$user_id)->paginate(5);
-        return view('dashboard.pages.Installments.analysis');
+        $installemnts_archived = Installments::onlyTrashed('id', 'asc')->paginate(5);
+        return view('dashboard.pages.Installments.archive')->with('installemnts_archived', $installemnts_archived);
     }
 
 
