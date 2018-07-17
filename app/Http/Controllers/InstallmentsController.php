@@ -170,6 +170,21 @@ class InstallmentsController extends Controller
         return redirect('Installments');
     }
 
+    public function forcedelete($id)
+    {
+        $item = Installments::onlyTrashed()->find($id);
+        $item->forceDelete();
+        session()->flash('success', 'Installment Deleted Successfully');
+        return redirect('Installments');
+    }
+
+    public function showOnlyTrashed($id)
+    {
+        $one_installment = Installments::onlyTrashed()->findOrFail($id);
+        //dd($one_installment);
+        return view('dashboard.pages.Installments.show')->with('one_installment', $one_installment);
+    }
+
     public function reports()
     {
         $user_id = auth()->user()->id;

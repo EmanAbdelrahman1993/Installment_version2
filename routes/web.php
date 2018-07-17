@@ -22,6 +22,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
 Route::resource('Installments', 'InstallmentsController');
 
+
+Route::delete('Installments/forcedelete/{id}','InstallmentsController@forcedelete');
+
+
+Route::get('Installments/showOnlyTrashed/{id}', 'InstallmentsController@showOnlyTrashed');
+
+
 Route::get('reports','InstallmentsController@reports');
 
 

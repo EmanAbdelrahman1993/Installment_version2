@@ -29,6 +29,7 @@
                             <td>Description</td>
                             <td>Price After Interest</td>
                             <td>Start Date</td>
+                            <td>Action</td>
 
                         </tr>
                         </thead>
@@ -41,6 +42,17 @@
                                 <td> {{ str_limit($installemnt->description, $limit = 25, $end = '...') }}</td>
                                 <td> {{$installemnt->price_after_interest}}</td>
                                 <td>{{$installemnt->start_month}}</td>
+
+                                <td>
+                                    <a href="{{url('Installments/showOnlyTrashed/'.$installemnt->id)}}" class="btn btn-success">Show</a>
+                                    <form method="post" action="{{url('Installments/forcedelete/'.$installemnt->id)}}"
+                                          style="display: inline;">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="DELETE"/>
+                                        <input type="submit" value="delete" class="btn btn-danger"/>
+                                    </form>
+
+                                </td>
 
 
                             </tr>
