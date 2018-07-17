@@ -51,8 +51,8 @@
                         @else
                             <div class="alert alert-dismissible alert-primary">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                <strong>Oh snap! No Report For You<a href="{{url('Installments/create')}}">Add New
-                                    Installment </a> and try again.</strong>
+                                <strong>Oh snap! No Report For You <button class="btn btn-primary"><a href="{{url('Installments/create')}}">Add New
+                                            Installment </a></button> and try again.</strong>
                             </div>
                         @endif
                         </tbody>

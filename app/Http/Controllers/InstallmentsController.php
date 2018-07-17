@@ -64,6 +64,7 @@ class InstallmentsController extends Controller
         ]);
 
 
+
         $inst = new Installments();
         $inst->user_id = auth()->user()->id;
         $inst->product_name = $request->product_name;

@@ -20,6 +20,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('editProfile','ProfileController@edit');
+    Route::post('updateProfile','ProfileController@update');
+
+    Route::get('editPassword','ProfileController@editPassword');
+    Route::post('updatePassword','ProfileController@updatePassword');
+
+
+
 Route::resource('Installments', 'InstallmentsController');
 
 
@@ -34,7 +42,7 @@ Route::get('reports','InstallmentsController@reports');
 
 Route::get('archive','InstallmentsController@archive');
 
-Route::get('analysis','InstallmentsController@analysis');
+
 
 
 

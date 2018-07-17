@@ -2,69 +2,121 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Installments Show
+                <a href="{{url('Installments')}}" class="btn btn-primary for pull-right">Back</a>
 
 
+            </h1>
+
+
+        </section>
         <!-- Main content -->
         <section class="content">
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class=" card-header"><h3>Installments Show</h3>
-                            <center> <a href="{{url('Installments')}}" class="btn btn-primary">Back to Installment</a></center>
-                        </div>
+                    <div class="box box-primary">
 
 
-                        <h2>Client Info</h2>
-                        </br>
-                        <h4>
-                        <div class="col-md-1">Name</div>
-                        <div class="col-md-2">{{$one_installment->client_name}}</div>
-                        </br>
-                        <div class="col-md-1">Mobile</div>
-                        <div class="col-md-2">{{$one_installment->client_mobile}}</div>
-                        </h4></br>
-                        <h2>Product Info</h2>
-                        <h4><div class="col-md-1"> Name</div>
-                        <div class="col-md-2">{{$one_installment->product_name}}</div>
-                        </h4></br>
-                        <h2>Price Info</h2>
-                        <h4><div class="col-md-3"> Price </div>
-                        <div class="col-md-3">{{$one_installment->price_after_interest}}</div>
-                        <div class="col-md-3"> Price per Month </div>
-                        <div class="col-md-3">{{$one_installment->price_per_month}}</div>
+                        <h3>Client Info</h3>
 
-                        <div class="col-md-3"> Price Last Month</div>
-                        <div class="col-md-3">{{$one_installment->price_last_month}}</div>
+                        <table class="table table-bordered table-responsive-sm table-hover">
 
-                        <div class="col-md-3"> No. of  Month</div>
-                        <div class="col-md-3">{{$one_installment->month_no}}</div>
+                            <thead>
+                            <tr>
 
-                        <div><div class="col-md-3">Description</div>
-                        <div class="col-md-9">{{$one_installment->description}}</div>
-                        </div></h4>
-                        <br/>
+                                <td>Client Name</td>
+                                <td>Mobile</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{$one_installment->client_name}}</td>
+                                <td>{{$one_installment->client_mobile}}</td>
 
-                        <h4><div><div class="col-md-3">Date of Sale :</div>
-                                <div class="col-md-3"> <span class="label label-warning">{{$one_installment->start_month}}</span></div>
-                            <div class="col-md-3">Last Date :</div>
-                                <div class="col-md-3">  <span class="label label-danger">{{$one_installment->last_month}}</span></div>
-                            </div>
-                        </h4>
+                            </tr>
 
 
+                            </tbody>
+                        </table>
+
+                        </hr>
+                        <h3>Product Info</h3>
 
 
+                        <table class="table table-bordered table-responsive-sm table-hover">
+
+                            <thead>
+                            <tr>
+
+                                <td>Product Name</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{$one_installment->product_name}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Price Info</h3>
+
+                        <table class="table table-bordered table-responsive-sm table-hover">
+
+                            <thead>
+                            <tr>
+
+                                <td>Price</td>
+                                <td>Price per Month</td>
+                                <td>Price Last Month</td>
+                                <td> No. of Month</td>
 
 
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{$one_installment->price_after_interest}}</td>
+                                <td>{{$one_installment->price_per_month}}</td>
+                                <td>{{$one_installment->price_last_month}}</td>
+                                <td>{{$one_installment->month_no}}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <h3>Additional Info</h3>
+
+                        <table class="table table-bordered table-responsive-sm table-hover">
+
+                            <thead>
+                            <tr>
+
+                                <td>Description</td>
+                                <td>Date of Sale :</td>
+                                <td>Last Date :</td>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+
+                                <td>{{$one_installment->description}}</td>
+                                <td><span class="label label-warning">{{$one_installment->start_month}}</span></td>
+                                <td><span class="label label-danger">{{$one_installment->last_month}}</span></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
 
 
                     </div>
 
                 </div>
-
             </div>
-
             <!-- /.row -->
         </section>
         <!-- /.content -->
